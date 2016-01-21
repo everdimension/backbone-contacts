@@ -10,7 +10,7 @@
 			position: absolute;
 			bottom: 0;
 			width: 100;
-			height: $contact-list-height;
+			height: $contact-list-height + $page-toggler-height;
 		}
 	}
 }

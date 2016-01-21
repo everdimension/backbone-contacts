@@ -1,8 +1,8 @@
 <div class="ContactList__wrapper">
 	<ul class="ContactList" id="thelist">
 		<% _.each(contacts, function(contact) { %>
-			<li class="ContactList__item">
-				<a href="#" data-id="<%= contact.id %>">
+			<li class="ContactList__item <%= contact.active ? 'active' : '' %>">
+				<a class="ContactList__link" href="#" data-id="<%= contact.id %>">
 					<%= contact.first_name %>
 					<br>
 					<%= contact.age %>
@@ -10,4 +10,6 @@
 			</li>
 		<% }); %>
 	</ul>
+
+	<div id="pageToggler"></div>
 </div>

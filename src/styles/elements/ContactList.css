@@ -6,6 +6,9 @@
 
 	@media (min-width: $screen-sm) {
 		height: $contact-list-height;
+		&__wrapper {
+			height: calc($contact-list-height + $page-toggler-height);
+		}
 	}
 
 	&__item {

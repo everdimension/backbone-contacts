@@ -21,7 +21,7 @@ const App = View.extend({
 	initialize: function (opts) {
 
 		this.collection = opts.collection;
-		this.collection.at(0).set({ active: true }, { silent: true });
+		this.collection.at(opts.activeIndex || 0).set({ active: true }, { silent: true });
 
 		this.contactsListView = new ContactsListView({
 			collection: this.collection
@@ -41,7 +41,6 @@ const App = View.extend({
 			this.renderContact();
 		});
 
-		this.render();
 	},
 
 	render: function () {
@@ -58,8 +57,8 @@ const App = View.extend({
 		this.$el.find('#contactsList').html(rendered);
 	},
 	renderContact: function () {
-		// const rendered = this.contactsListView.render().el;
-		this.$el.find('#contact').html( this.contactView.render().el );
+		const rendered = this.contactView.render().el;
+		this.$el.find('#contact').html(rendered);
 	}
 
 });

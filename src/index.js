@@ -5,7 +5,7 @@ import ContactsCollection from './collections/ContactsCollection';
 import 'normalize.css/normalize.css';
 import './styles/main.css';
 
-
+const INITIAL_ACTIVE_INDEX = 1;
 
 
 function jsonResponseHandler(res) {
@@ -23,7 +23,8 @@ fetch('data/contacts.json')
 function render(data) {
 	const contacts = new ContactsCollection(data);
 	const app = new AppView({
-		collection: contacts
+		collection: contacts,
+		activeIndex: INITIAL_ACTIVE_INDEX
 	});
 
 	window.testDebug = window.testDebug || {};

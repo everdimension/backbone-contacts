@@ -1,0 +1,12 @@
+.PageToggler {
+	text-align: center;
+	padding: $padding-base;
+	@media (min-width: $screen-sm) {
+		height: $page-toggler-height;
+	}
+
+	&__toggle {
+		color: $text-clr;
+		text-decoration: none;
+	}
+}
