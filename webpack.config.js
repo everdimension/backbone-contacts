@@ -56,9 +56,10 @@ var config = {
 	},
 
 	devServer: {
-		contentBase: paths.dist,
+		contentBase: paths.distAbsolute,
 		host: '0.0.0.0',
-		hot: true
+		hot: true,
+		historyApiFallback: true
 	},
 
 	plugins: [

@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import _ from 'lodash';
 import { View } from 'backbone';
-import tmpl from './PageTogglerViewTemplate.html';
+import tmpl from './PageTogglerView.html';
 
 const PageTogglerView = View.extend({
 
@@ -20,7 +20,8 @@ const PageTogglerView = View.extend({
 		evt.preventDefault();
 		const direction = evt.target.getAttribute('data-direction');
 		const newIndex = this.nextIndex[direction](this.currentIndex);
-		this.collection.at(newIndex % this.collection.length).set({ active: true });
+		const chosenModel = this.collection.at(newIndex % this.collection.length);
+		this.collection.selectModel(chosenModel);
 	},
 
 	initialize: function () {

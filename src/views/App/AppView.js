@@ -1,27 +1,20 @@
 import $ from 'jquery';
 import _ from 'lodash';
-import { View } from 'backbone';
+import Backbone, { View } from 'backbone';
 import tmpl from './AppView.html';
-import ContactsListView from './ContactsListView';
-import ContactView from './ContactView';
+import ContactsListView from '../ContactsList/ContactsListView';
+import ContactView from '../Contact/ContactView';
+import ContactsRouter from '../../routers/ContactsRouter';
+import vent from '../../vent';
 
 const App = View.extend({
 	tagName: 'div',
 
 	tmpl: _.template(tmpl),
 
-	events: {
-		'click #contact': 'handleClick'
-	},
-
-	handleClick: function (evt) {
-		console.log('handleClick!...');
-	},
-
 	initialize: function (opts) {
 
 		this.collection = opts.collection;
-		this.collection.at(opts.activeIndex || 0).set({ active: true }, { silent: true });
 
 		this.contactsListView = new ContactsListView({
 			collection: this.collection
@@ -32,15 +25,25 @@ const App = View.extend({
 		});
 
 		this.listenTo(this.collection, 'change:active', updatedModel => {
-			this.collection.each(
-				model => model.set({
-					active: model.id === updatedModel.id
-				}, { silent: true })
-			);
-
 			this.renderContact();
 		});
 
+		this.collection.selectModel(this.collection.at(opts.activeIndex || 0));
+
+		this.listenTo(vent, 'contact:active', this.navigate);
+
+		this.contactsRouter = new ContactsRouter({ collection: this.collection });
+		Backbone.history.start({ pushState: true });
+
+		window.testDebug.contactsRouter = this.contactsRouter;
+
+	},
+
+	navigate: function (updatedModel) {
+		console.log('navigate');
+		const id = updatedModel.get('id');
+		console.log('id', id);
+		this.contactsRouter.navigate(`/contact/${id}`);
 	},
 
 	render: function () {

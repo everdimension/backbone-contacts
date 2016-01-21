@@ -1,11 +1,13 @@
 import $ from 'jquery';
-import AppView from './views/AppView';
+import AppView from './views/App/AppView';
 import ContactsCollection from './collections/ContactsCollection';
 
 import 'normalize.css/normalize.css';
 import './styles/main.css';
 
 const INITIAL_ACTIVE_INDEX = 1;
+
+window.testDebug = window.testDebug || {};
 
 
 function jsonResponseHandler(res) {
@@ -14,10 +16,10 @@ function jsonResponseHandler(res) {
 	return isSuccess ? res.json() : Promise.reject(res.statusText);
 }
 
-fetch('data/contacts.json')
+fetch('/data/contacts.json')
 	.then(jsonResponseHandler)
-	.then(render)
-	.catch(err => console.warn('err', err));
+	.then(render);
+	// .catch(err => console.warn('err', err));
 
 
 function render(data) {
@@ -27,7 +29,6 @@ function render(data) {
 		activeIndex: INITIAL_ACTIVE_INDEX
 	});
 
-	window.testDebug = window.testDebug || {};
 	window.testDebug.app = app;
 
 	$('#app').html(app.render().el);
