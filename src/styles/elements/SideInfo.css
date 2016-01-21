@@ -1,0 +1,8 @@
+.SideInfo {
+	padding-left: $padding-large;
+	padding-right: $padding-large;
+	&__item {
+		margin-bottom: 15px;
+		color: white;
+	}
+}

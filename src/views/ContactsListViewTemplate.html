@@ -1,0 +1,13 @@
+<div class="ContactList__wrapper">
+	<ul class="ContactList" id="thelist">
+		<% _.each(contacts, function(contact) { %>
+			<li class="ContactList__item">
+				<a href="#" data-id="<%= contact.id %>">
+					<%= contact.first_name %>
+					<br>
+					<%= contact.age %>
+				</a>
+			</li>
+		<% }); %>
+	</ul>
+</div>

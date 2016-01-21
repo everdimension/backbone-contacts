@@ -1,0 +1,49 @@
+.Contact {
+	&:after {
+		content: ' ';
+		display: table;
+		clear: both;
+	}
+	height: 80vh;
+	background-color: $app-bg;
+	padding-bottom: 100px;
+	overflow: hidden;
+
+	&__sideinfo-wrapper {
+		float: left;
+		padding-bottom: 1000px;
+		margin-bottom: -1000px;
+		background-color: $app-bg-dark;
+		@media (min-width: $screen-sm) {
+			width: $sideinfo-width;
+		}
+	}
+	&__sideinfo {
+		padding-top: $padding-huge;
+	}
+
+	&__body {
+		padding: $padding-base;
+		padding-top: $padding-huge;
+		@media (min-width: $screen-sm) {
+			margin-left: $sideinfo-width;
+		}
+	}
+
+	&__title {
+		text-align: center;
+		font-size: 1.8em;
+		line-height: 2;
+		animation: fromRight .2s;
+	}
+}
+
+@keyframes fromRight {
+	from {
+		transform: translateX(40px);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(0);
+	}
+}

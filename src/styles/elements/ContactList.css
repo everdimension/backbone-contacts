@@ -1,0 +1,51 @@
+.ContactList {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	background-color: $app-bg;
+
+	@media (min-width: $screen-sm) {
+		height: $contact-list-height;
+	}
+
+	&__item {
+		text-align: center;
+		line-height: 2;
+		border-bottom: 1px solid $app-border-light;
+		&:last-child {
+			border-bottom: none;
+		}
+
+		> a {
+			display: block;
+			padding: 10px;
+			color: $text-clr;
+			text-decoration: none;
+			&:hover {
+				background-color: $contact-item-bg-hover;
+			}
+		}
+
+		&.active {
+			> a {
+				box-shadow: inset 0 0 0 3px $app-bg-dark;
+			}
+		}
+
+		@media (min-width: $screen-sm) {
+			display: table-cell;
+			width: 1%;
+			border-bottom: none;
+			border-right: 1px solid $app-border-light;
+			&:last-child {
+				border-right: none;
+			}
+			> a {
+				padding-top: 20px;
+				padding-bottom: 20px;
+				height: $contact-list-height;
+			}
+		}
+
+	}
+}

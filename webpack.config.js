@@ -43,6 +43,10 @@ var config = {
 			{
 				test: /\.css$/,
 				loader: 'style!css!postcss'
+			},
+			{
+				test: /\.html$/,
+				loader: 'html'
 			}
 		]
 	},

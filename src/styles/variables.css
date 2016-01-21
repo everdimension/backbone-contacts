@@ -1,0 +1,16 @@
+$body-bg: white;
+$app-bg: #E6E6E6;
+$app-bg-dark: #989898;
+$app-border-light: #ccc;
+
+$contact-item-bg-hover: #ddd;
+$text-clr: black;
+
+$padding-base: 10px;
+$padding-large: 20px;
+$padding-huge: 50px;
+
+$sideinfo-width: 180px;
+$contact-list-height: 100px;
+
+$screen-sm: 600px;

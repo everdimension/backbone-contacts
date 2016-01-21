@@ -2,6 +2,12 @@ import $ from 'jquery';
 import AppView from './views/AppView';
 import ContactsCollection from './collections/ContactsCollection';
 
+import 'normalize.css/normalize.css';
+import './styles/main.css';
+
+
+
+
 function jsonResponseHandler(res) {
 	console.log('res', res);
 	const isSuccess = res.status >= 200 && res.status < 300;
@@ -19,6 +25,9 @@ function render(data) {
 	const app = new AppView({
 		collection: contacts
 	});
+
+	window.testDebug = window.testDebug || {};
+	window.testDebug.app = app;
 
 	$('#app').html(app.render().el);
 

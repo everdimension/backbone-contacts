@@ -1,0 +1,16 @@
+*, *:after, *:before {
+	box-sizing: border-box;
+}
+
+html {
+	min-height: 100%;
+	position: relative;
+}
+
+body {
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+
+	@media (min-width: $screen-sm) {
+		margin-bottom: calc($contact-list-height + 20);
+	}
+}

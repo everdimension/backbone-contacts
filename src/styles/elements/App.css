@@ -1,0 +1,16 @@
+.App {
+	&__Contact {
+
+		margin-bottom: 30px;
+
+	}
+
+	&__ContactList {
+		@media (min-width: $screen-sm) {
+			position: absolute;
+			bottom: 0;
+			width: 100;
+			height: $contact-list-height;
+		}
+	}
+}
