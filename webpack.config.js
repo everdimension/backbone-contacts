@@ -1,4 +1,5 @@
 var webpack                = require('webpack');
+var ExtractTextPlugin      = require('extract-text-webpack-plugin');
 var autoprefixer           = require('autoprefixer');
 var postcssImport          = require('postcss-import');
 var postcssVars            = require('postcss-simple-vars');
@@ -15,15 +16,41 @@ var paths = {
 	distAbsolute: __dirname + '/dist'
 };
 
-var entrySettings = [
-	paths.src + '/index.js'
-];
+var entrySettings;
+var cssLoader;
+var plugins = [
+	new webpack.HotModuleReplacementPlugin(),
+	new webpack.optimize.CommonsChunkPlugin('common', 'common.js'),
+	new webpack.ProvidePlugin({
+		'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+	})
+]
 
 if (isDev) {
-	entrySettings.unshift(
+	entrySettings = [
 		'webpack-dev-server/client?http://localhost:8080',
-		'webpack/hot/only-dev-server'
-	);
+		'webpack/hot/only-dev-server',
+		paths.src + '/index.js'
+	];
+
+	cssLoader = {
+		test: /\.css$/,
+		loader: 'style!css!postcss'
+	};
+}
+
+if (isProduction) {
+	entrySettings = {
+		app: paths.src + '/index.js',
+		common: ['jquery', 'backbone', 'lodash']
+	};
+
+	cssLoader = {
+		test: /\.css$/,
+		loader: ExtractTextPlugin.extract('style', 'css!postcss')
+	};
+
+	plugins.push(new ExtractTextPlugin('styles.css'));
 }
 
 var config = {
@@ -40,10 +67,7 @@ var config = {
 				exclude: /node_modules/,
 				loader: 'react-hot!babel?presets[]=react,presets[]=es2015'
 			},
-			{
-				test: /\.css$/,
-				loader: 'style!css!postcss'
-			},
+			cssLoader,
 			{
 				test: /\.html$/,
 				loader: 'html'
@@ -62,12 +86,7 @@ var config = {
 		historyApiFallback: true
 	},
 
-	plugins: [
-		new webpack.HotModuleReplacementPlugin(),
-		new webpack.ProvidePlugin({
-			'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
-		})
-	]
+	plugins: plugins
 };
 
 module.exports = config;
