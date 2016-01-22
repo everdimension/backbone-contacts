@@ -18,8 +18,8 @@ function jsonResponseHandler(res) {
 
 fetch('/data/contacts.json')
 	.then(jsonResponseHandler)
-	.then(render);
-	// .catch(err => console.warn('err', err));
+	.then(render)
+	.catch(err => console.warn('err', err));
 
 
 function render(data) {
