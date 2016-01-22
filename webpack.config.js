@@ -65,7 +65,7 @@ var config = {
 			{
 				test: /\.jsx?$/,
 				exclude: /node_modules/,
-				loader: 'react-hot!babel?presets[]=react,presets[]=es2015'
+				loader: 'babel?presets[]=es2015'
 			},
 			cssLoader,
 			{
